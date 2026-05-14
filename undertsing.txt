@@ -1,1 +1,33 @@
-tetxt
+tetxt:
+
+
+An authentication expert (Speaker D) explains the exact workflow required to secure the API:
+1. **Frontend Authentication:** The frontend application currently handles user logins via Microsoft OAuth, which automatically generates an encoded **Bearer token** upon successful validation. 
+2. **Middleware Interception:** The frontend team needs to pass this Bearer token inside the Authorization header of their API requests. On the backend, Speaker A must create a routing middleware that intercepts every incoming API request before it reaches the endpoint.
+3. **Microsoft Graph API Validation:** Once the backend middleware extracts the Bearer token, it will forward the token to the **Microsoft Graph API**. The Graph API will validate the token and return the authenticated user's details, such as their name, employee ID, and email ID.
+4. **Database Verification:** As a final step, the backend will verify the returned email ID against its internal database. If the user is recognized, the API will serve the requested data. If the token is missing, invalid, or the user is not in the database, the middleware will automatically block the request and return an unauthorized error. 
+
+By implementing this, the team ensures that unauthorized or direct browser hits to the API will immediately be rejected, satisfying the "deny by default" requirement. 
+
+
+**Speaker D:** Yes, then it is fine. The setup is there. **So when sign-in happens via OAuth on the frontend, you will get a Bearer token. Okay? That will be a large encoded token.**
+**Speaker A:** Hmm.
+**Speaker D:** Which [Frontend Dev] will send you in the API request. And how is that token generated? When OAuth is validated by Microsoft.
+**Speaker A:** Yes.
+**Speaker D:** So automatically after every validation, a token is generated.
+**Speaker A:** Hmm.
+**Speaker D:** Okay? **So when you receive that token on the API, you will send that same token to Microsoft's Graph API.**
+**Speaker A:** Oh, Microsoft's Graph API. Okay.
+**Speaker D:** Yes, note it down, you will send it to Graph API. The very first step is our Bearer token. [Frontend Dev] will send it to you; you just need to add an authorization field that receives the Bearer token. Okay? You put that on Cursor, it will do it.
+**Speaker A:** Okay, token is received. What happens in step two?
+**Speaker D:** You will send that Bearer token to the Graph API. And what does this Graph API do? **It will take the token as input, and its output will be information about your user base, meaning the user who logged in. It will return their ID, employee ID, email ID, designation, name, etc.**
+**Speaker A:** Hmm, okay. Yes.
+**Speaker D:** So basically the Graph API is just like the APIs we build here on the backend. It has an input and an output. The input is the request, and the output is those user details. Okay? So once you get the user details, you can validate whether this user is valid or not. I mean, they will be valid because they logged in.
+**Speaker A:** Okay. So we just have to apply this step one and step two in the middleware, right?
+**Speaker D:** Yes, apply step one and step two. In step three, if you want, you can also add a validation on the backend by storing it somewhere.
+**Speaker A:** Is this being done on the frontend or backend?
+**Speaker D:** This is your backend. On the frontend...
+**Speaker A:** The Bearer token will be received on the frontend, and they will give it to me, right?
+**Speaker D:** Yes, the Bearer token will be generated on the frontend, and they will send it to you. Okay?
+**Speaker A:** Yes, so I have to receive it on the backend and send it to the Graph API. Like what is happening right now... look here for a second. I think it is happening here. There is a middleware here. Okay? It's extracting here. Then hosting the client. Logging here. This is it, right? It might be here, but maybe it hasn't been done on all endpoints. This is the CORS middleware. The CORS middleware is different.
+**
