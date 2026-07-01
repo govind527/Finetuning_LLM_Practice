@@ -1,1 +1,47 @@
 tetxt:
+
+### **Detailed English Transcript (Anonymized)**
+
+**Speaker 1:** Hello.
+**Speaker 2:** Ya, yes.
+**Speaker 1:** I have a task for you.
+**Speaker 2:** Okay.
+**Speaker 1:** Regarding the [Client A] thing....
+**Speaker 2:** Yes.
+**Speaker 1:** The 75-day payment term. You have to analyze that in the existing collection date data, okay?.
+**Speaker 2:** Okay.
+**Speaker 1:** In the collection date data, all the existing payments for [Client A].
+**Speaker 2:** Only for [Client A], yes, yes.
+**Speaker 1:** You have to revise it and make it according to the 75-day rule. For example, suppose they provided a service in July, their timeline starts... basically the first day of the billing month. 75 days from there, okay?.
+**Speaker 2:** Hmm, that will be the due date. So, I have to update that in this? In what exactly?.
+**Speaker 1:** In the collection data. Basically, create a logic in the collection data. Create a logic checking if the client code matches—there should be two client codes for [Client A]. Okay?. So if you find that, you will adjust its due date and you will also adjust its payment days, the payment term.
+**Speaker 2:** Understood? But there are no payment terms in the collection data.
+**Speaker 1:** Our collection data doesn't have a payment term, but it does have a due date and an invoice date. By default, we used to calculate [Client A]'s like that, right? Due date minus invoice date, correct?.
+**Speaker 2:** Yes.
+**Speaker 1:** But now it will be different for [Client A]. Whatever the due date is now, for [Client A], we look at the first of that billing month. If it's 75, great; if not, we will have to update it. I think it would just be exactly 75, okay?.
+**Speaker 2:** Okay, give me an example. Suppose someone took a service for [Client A] in July. Will the billing start from the month of July? Will it start from the first, or from the next month?.
+**Speaker 1:** Look at its billing. We have the billing date, you understand?.
+**Speaker 2:** Do we have the invoice date or not?.
+**Speaker 1:** There will be an invoice date for [Client A] because... well, [Client A] or any invoice will have an invoice date, right?.
+**Speaker 2:** Yes, yes.
+**Speaker 1:** From that invoice date, you will get the invoice month. The first day of the invoice month will be your starting point. 75 days from that first day will be your new due date. You have to check if the logic holds up.
+**Speaker 2:** Okay. Yes, yes, correct. Okay.
+**Speaker 1:** If not, let me know; we might have to update the logic. Okay?.
+**Speaker 2:** Hmm, okay. Okay, I will do it.
+**Speaker 1:** Yes, yes, yes. Okay.
+**Speaker 2:** Okay. Let's go, bye-bye.
+**Speaker 1:** Bye-bye.
+
+***
+
+### **Overall Detailed Summary**
+
+**Core Objective:**
+The primary goal of this meeting is to assign a specific modeling task: implementing a custom 75-day payment term logic for a specific client ("Client A") within the existing collection data. 
+
+**Key Discussions & Technical Decisions:**
+
+*   **Custom Due Date Logic:** The team needs to adjust how the due date is calculated exclusively for "Client A". Instead of using their standard default method (which was simply calculating due date minus invoice date), they will now standardize the due date to be exactly 75 days from the **first day of the invoice month**. 
+*   **Targeting the Client:** The developer is instructed to write a conditional logic script that filters the collection data to find "Client A" using its two specific client codes. 
+*   **Handling Missing Data Fields:** The developer points out a potential blocker: the "payment terms" field does not actually exist in the collection database. The manager clarifies a workaround: since they have the `invoice date`, the developer can extract the `invoice month` from it, identify the first day of that month, and simply add 75 days to establish the revised `due date`. 
+*   **Action Items:** The developer will implement this new logic to dynamically adjust the due dates and payment terms for "Client A" and report back if the logic fails or needs further refinement.
